@@ -57,8 +57,8 @@ jobs:
         id: test-action
         uses: ./
         with:
-          refName: '${{ github.ref_name }}'
-          DISTR_APPLICATION_ID: '{{ vars.DISTR_APPLICATION_ID }}'
+          distr-application-version-name: ${{ github.ref_name }}
+          distr-application-id: ${{ vars.DISTR_APPLICATION_ID }}
         env:
           DISTR_TOKEN: ${{ secrets.DISTR_TOKEN }}
 
