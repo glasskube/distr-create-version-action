@@ -37,13 +37,13 @@ jobs:
           distr-api-base: ${{ vars.DISTR_API_BASE }}
           distr-api-token: ${{ secrets.DISTR_TOKEN }}
           distr-application-id: ${{ vars.DISTR_APPLICATION_ID }}
-          distr-application-version-name: 'v2.0.0' # ${{ github.ref_name }}
+          distr-application-version-name: 'v2.0.1' # ${{ github.ref_name }}
           distr-application-version-compose-file:
             ${{ steps.read-docker-compose.outputs.data }}
         #env:
         #  DISTR_API_BASE: ${{ vars.DISTR_API_BASE }}
         #  DISTR_TOKEN: ${{ secrets.DISTR_TOKEN }}
 
-      - name: Print Output
+      - name: Print Application Version ID
         id: output
-        run: echo "${{ steps.test-action.outputs.time }}"
+        run: echo "${{ steps.distr-app-upload-action.outputs.version-id }}"
