@@ -24,6 +24,7 @@ jobs:
       - name: Read Docker Compose File
         id: read-docker-compose
         run: |
+          echo "data=$(cat ${{ github.workspace }}/README.md)"
           echo 'var<<EOF' >> $GITHUB_OUTPUT
           echo "data=$(cat ${{ github.workspace }}/README.md)" >> $GITHUB_OUTPUT
           echo 'EOF' >> $GITHUB_OUTPUT
