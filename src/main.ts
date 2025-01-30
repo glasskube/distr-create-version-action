@@ -14,8 +14,10 @@ export async function run(): Promise<void> {
     core.debug(`some-value: ${input}`)
 
     const token = core.getInput('DISTR_TOKEN')
-    const apiBase = core.getInput('DISTR_API_BASE')
+    const apiBase = core.getState('DISTR_API_BASE')
     const appId = core.getInput('DISTR_APPLICATION_ID')
+
+    core.debug(`${apiBase} ${appId}`)
 
     const distr = new DistrService({
       apiBase: apiBase,

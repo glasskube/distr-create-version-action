@@ -30192,8 +30192,9 @@ async function run() {
         // Debug logs are only output if the `ACTIONS_STEP_DEBUG` secret is true
         coreExports.debug(`some-value: ${input}`);
         const token = coreExports.getInput('DISTR_TOKEN');
-        const apiBase = coreExports.getInput('DISTR_API_BASE');
+        const apiBase = coreExports.getState('DISTR_API_BASE');
         const appId = coreExports.getInput('DISTR_APPLICATION_ID');
+        coreExports.debug(`${apiBase} ${appId}`);
         const distr = new DistrService({
             apiBase: apiBase,
             apiKey: token
