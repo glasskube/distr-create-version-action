@@ -58,7 +58,7 @@ jobs:
         uses: ./
         with:
           distr-api-base: ${{ vars.DISTR_API_BASE }}
-          distr-token: ${{ secrets.DISTR_TOKEN }}
+          distr-api-token: ${{ secrets.DISTR_TOKEN }}
           distr-application-version-name: ${{ github.ref_name }}
           distr-application-id: ${{ vars.DISTR_APPLICATION_ID }}
         #env:

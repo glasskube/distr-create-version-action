@@ -9,6 +9,12 @@ branding:
 
 # Define your inputs here.
 inputs:
+  distr-api-base:
+    description: ID of the application that the version will be created in
+    required: true
+  distr-api-token:
+    description: ID of the application that the version will be created in
+    required: true
   distr-application-version-name:
     description: Name of the version that will be created
     required: true

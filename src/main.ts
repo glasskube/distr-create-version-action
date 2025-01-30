@@ -14,8 +14,8 @@ export async function run(): Promise<void> {
     // Debug logs are only output if the `ACTIONS_STEP_DEBUG` secret is true
     core.info(`appId: ${appId}, versionName: ${versionName}`)
 
-    const token = core.getInput('DISTR_TOKEN')
-    const apiBase = core.getInput('DISTR_API_BASE')
+    const token = core.getInput('distr-api-token')
+    const apiBase = core.getInput('distr-api-base')
 
     core.info(`apiBase: ${apiBase}`)
 
