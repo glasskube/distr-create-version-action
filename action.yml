@@ -1,4 +1,4 @@
-name: The name of your action here
+name: Test Action
 description: Provide a description here
 author: Your name or organization here
 
@@ -9,10 +9,10 @@ branding:
 
 # Define your inputs here.
 inputs:
-  milliseconds:
-    description: Your input description here
+  some-value:
+    description: some value
     required: true
-    default: '1000'
+    default: 'default-value'
 
 # Define your outputs here.
 outputs:

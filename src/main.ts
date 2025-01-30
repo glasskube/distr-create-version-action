@@ -1,5 +1,4 @@
 import * as core from '@actions/core'
-import { wait } from './wait.js'
 
 /**
  * The main function for the action.
@@ -8,15 +7,12 @@ import { wait } from './wait.js'
  */
 export async function run(): Promise<void> {
   try {
-    const ms: string = core.getInput('milliseconds')
+    const input: string = core.getInput('some-value')
 
     // Debug logs are only output if the `ACTIONS_STEP_DEBUG` secret is true
-    core.debug(`Waiting ${ms} milliseconds ...`)
+    core.debug(`some-value: ${input}`)
 
-    // Log the current timestamp, wait, then log the new timestamp
-    core.debug(new Date().toTimeString())
-    await wait(parseInt(ms, 10))
-    core.debug(new Date().toTimeString())
+    core.info(new Date().toTimeString())
 
     // Set outputs for other workflow steps to use
     core.setOutput('time', new Date().toTimeString())
