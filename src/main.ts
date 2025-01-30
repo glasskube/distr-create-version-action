@@ -31,10 +31,16 @@ export async function run(): Promise<void> {
     const v = await distr.getLatestVersion(appId)
     core.info(`latest version: ${JSON.stringify(v)}`)
 
+    const version = await distr.createDockerApplicationVersion(
+      appId,
+      versionName,
+      composeFile
+    )
+
     core.info(new Date().toTimeString())
 
     // Set outputs for other workflow steps to use
-    core.setOutput('time', new Date().toTimeString())
+    core.setOutput('version-id', version.id)
   } catch (error) {
     // Fail the workflow run if an error occurs
     if (error instanceof Error) core.setFailed(error.message)

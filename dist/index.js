@@ -30203,9 +30203,10 @@ async function run() {
         });
         const v = await distr.getLatestVersion(appId);
         coreExports.info(`latest version: ${JSON.stringify(v)}`);
+        const version = await distr.createDockerApplicationVersion(appId, versionName, composeFile);
         coreExports.info(new Date().toTimeString());
         // Set outputs for other workflow steps to use
-        coreExports.setOutput('time', new Date().toTimeString());
+        coreExports.setOutput('version-id', version.id);
     }
     catch (error) {
         // Fail the workflow run if an error occurs

@@ -30,9 +30,6 @@ jobs:
           echo 'EOF' >> $GITHUB_OUTPUT
         shell: bash
 
-      - name: Print Docker Compose File
-        run: echo "${{ steps.read-docker-compose.outputs.data }}"
-
       - name: Distr App Upload Action (local)
         id: distr-app-upload-action
         uses: ./
@@ -41,7 +38,8 @@ jobs:
           distr-api-token: ${{ secrets.DISTR_TOKEN }}
           distr-application-id: ${{ vars.DISTR_APPLICATION_ID }}
           distr-application-version-name: 'v2.0.0' # ${{ github.ref_name }}
-          distr-application-version-compose-file: ${{ steps.read-docker-compose.outputs.data }}
+          distr-application-version-compose-file:
+            ${{ steps.read-docker-compose.outputs.data }}
         #env:
         #  DISTR_API_BASE: ${{ vars.DISTR_API_BASE }}
         #  DISTR_TOKEN: ${{ secrets.DISTR_TOKEN }}

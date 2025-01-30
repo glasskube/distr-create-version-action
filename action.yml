@@ -27,7 +27,7 @@ inputs:
 
 # Define your outputs here.
 outputs:
-  time:
+  version-id:
     description: Your output description here
 
 runs:
