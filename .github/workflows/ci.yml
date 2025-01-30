@@ -26,7 +26,7 @@ jobs:
         run: |
           EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64) # TODO check this
           echo 'data<<EOF' >> $GITHUB_OUTPUT
-          echo "$(cat ${{ github.workspace }}/README.md)" >> $GITHUB_OUTPUT
+          echo "$(cat ${{ github.workspace }}/.yaml-lint.yml)" >> $GITHUB_OUTPUT
           echo 'EOF' >> $GITHUB_OUTPUT
         shell: bash
 
