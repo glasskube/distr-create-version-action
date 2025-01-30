@@ -23,7 +23,7 @@ jobs:
 
       - name: Read Docker Compose File
         id: read-docker-compose
-        run: cat ${{ github.workspace }}/README.md
+        run: cat ${{ github.workspace }}/README.md >> $GITHUB_OUTPUT
 
       - name: Distr App Upload Action (local)
         id: distr-app-upload-action
