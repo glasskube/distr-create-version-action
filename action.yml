@@ -9,10 +9,12 @@ branding:
 
 # Define your inputs here.
 inputs:
-  some-value:
-    description: some value
+  distr-application-version-name:
+    description: Name of the version that will be created
     required: true
-    default: 'default-value'
+  distr-application-id:
+    description: ID of the application that the version will be created in
+    required: true
 
 # Define your outputs here.
 outputs:

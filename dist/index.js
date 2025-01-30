@@ -30188,13 +30188,13 @@ class DistrService {
  */
 async function run() {
     try {
-        const input = coreExports.getInput('refName');
+        const versionName = coreExports.getInput('distr-application-version-name');
         // Debug logs are only output if the `ACTIONS_STEP_DEBUG` secret is true
-        coreExports.debug(`some-value: ${input}`);
+        coreExports.info(`versionName: ${versionName}`);
         const token = coreExports.getInput('DISTR_TOKEN');
         const apiBase = coreExports.getInput('DISTR_API_BASE');
-        const appId = coreExports.getInput('DISTR_APPLICATION_ID');
-        coreExports.debug(`${apiBase} ${appId}`);
+        const appId = coreExports.getInput('distr-application-id');
+        coreExports.info(`${apiBase} ${appId}`);
         const distr = new DistrService({
             apiBase: apiBase,
             apiKey: token

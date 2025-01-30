@@ -8,16 +8,16 @@ import { DistrService } from '@glasskube/distr-sdk'
  */
 export async function run(): Promise<void> {
   try {
-    const input: string = core.getInput('refName')
+    const versionName: string = core.getInput('distr-application-version-name')
 
     // Debug logs are only output if the `ACTIONS_STEP_DEBUG` secret is true
-    core.debug(`some-value: ${input}`)
+    core.info(`versionName: ${versionName}`)
 
     const token = core.getInput('DISTR_TOKEN')
     const apiBase = core.getInput('DISTR_API_BASE')
-    const appId = core.getInput('DISTR_APPLICATION_ID')
+    const appId = core.getInput('distr-application-id')
 
-    core.debug(`${apiBase} ${appId}`)
+    core.info(`${apiBase} ${appId}`)
 
     const distr = new DistrService({
       apiBase: apiBase,
