@@ -10,9 +10,13 @@ export async function run(): Promise<void> {
   try {
     const appId = core.getInput('distr-application-id')
     const versionName: string = core.getInput('distr-application-version-name')
+    const composeFile: string = core.getInput(
+      'distr-application-version-compose-file'
+    )
 
     // Debug logs are only output if the `ACTIONS_STEP_DEBUG` secret is true
     core.info(`appId: ${appId}, versionName: ${versionName}`)
+    core.info(`composeFile: ${composeFile}`)
 
     const token = core.getInput('distr-api-token')
     const apiBase = core.getInput('distr-api-base')

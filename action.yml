@@ -1,4 +1,4 @@
-name: Test Action
+name: Distr App Upload Action
 description: Provide a description here
 author: Your name or organization here
 
@@ -15,12 +15,15 @@ inputs:
   distr-api-token:
     description: ID of the application that the version will be created in
     required: true
-  distr-application-version-name:
-    description: Name of the version that will be created
-    required: true
   distr-application-id:
     description: ID of the application that the version will be created in
     required: true
+  distr-application-version-name:
+    description: Name of the version that will be created
+    required: true
+  distr-application-version-compose-file:
+    description: Compose File Contents
+    required: false
 
 # Define your outputs here.
 outputs:
