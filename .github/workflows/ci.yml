@@ -23,7 +23,8 @@ jobs:
 
       - name: Read Docker Compose File
         id: read-docker-compose
-        run: cat ${{ github.workspace }}/README.md >> $GITHUB_OUTPUT
+        run: echo "compose-file=$(cat ${{ github.workspace }}/README.md)" >> $GITHUB_OUTPUT
+        shell: bash
 
       - name: Distr App Upload Action (local)
         id: distr-app-upload-action
@@ -33,7 +34,7 @@ jobs:
           distr-api-token: ${{ secrets.DISTR_TOKEN }}
           distr-application-id: ${{ vars.DISTR_APPLICATION_ID }}
           distr-application-version-name: 'v2.0.0' # ${{ github.ref_name }}
-          distr-application-version-compose-file: ${{ steps.read-docker-compose.outputs }}
+          distr-application-version-compose-file: ${{ steps.read-docker-compose.outputs.compose-file }}
         #env:
         #  DISTR_API_BASE: ${{ vars.DISTR_API_BASE }}
         #  DISTR_TOKEN: ${{ secrets.DISTR_TOKEN }}
