@@ -57,7 +57,10 @@ jobs:
         id: test-action
         uses: ./
         with:
-          some-value: 'value-from-workflow'
+          refName: '${{ github.ref_name }}'
+          DISTR_APPLICATION_ID: '{{ vars.DISTR_APPLICATION_ID }}'
+        env:
+          DISTR_TOKEN: ${{ secrets.DISTR_TOKEN }}
 
       - name: Print Output
         id: output

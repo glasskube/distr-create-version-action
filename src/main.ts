@@ -7,10 +7,14 @@ import * as core from '@actions/core'
  */
 export async function run(): Promise<void> {
   try {
-    const input: string = core.getInput('some-value')
+    const input: string = core.getInput('refName')
 
     // Debug logs are only output if the `ACTIONS_STEP_DEBUG` secret is true
     core.debug(`some-value: ${input}`)
+
+    core.info(core.getState('DISTR_TOKEN'))
+    core.info(core.getInput('DISTR_APPLICATION_ID'))
+    core.info(core.getInput('DISTR_TOKEN'))
 
     core.info(new Date().toTimeString())
 

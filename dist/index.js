@@ -27245,9 +27245,12 @@ var coreExports = requireCore();
  */
 async function run() {
     try {
-        const input = coreExports.getInput('some-value');
+        const input = coreExports.getInput('refName');
         // Debug logs are only output if the `ACTIONS_STEP_DEBUG` secret is true
         coreExports.debug(`some-value: ${input}`);
+        coreExports.info(coreExports.getState('DISTR_TOKEN'));
+        coreExports.info(coreExports.getInput('DISTR_APPLICATION_ID'));
+        coreExports.info(coreExports.getInput('DISTR_TOKEN'));
         coreExports.info(new Date().toTimeString());
         // Set outputs for other workflow steps to use
         coreExports.setOutput('time', new Date().toTimeString());
