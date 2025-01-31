@@ -4,9 +4,6 @@ on:
   pull_request:
     branches:
       - main
-  push:
-    branches:
-      - main
 
 permissions:
   contents: read
@@ -26,17 +23,16 @@ jobs:
         uses: ./
         with:
           api-base: ${{ vars.DISTR_API_BASE }}
-          # api-token: ${{ secrets.DISTR_TOKEN }}
+          api-token: 'none' # ${{ secrets.DISTR_TOKEN }}
           application-id: '7fa566b3-a20e-4b09-814c-5193c1469f7c' # ${{ vars.DISTR_APPLICATION_ID }}
           version-name: 'v7.0.0' # ${{ github.ref_name }}
           # compose-file: ${{ github.workspace }}/.yaml-lint.yml
-          chart-type: 'oci'
-          chart-url: oci://ghcr.io/stefanprodan/charts/podinfo
-          chart-version: 'v7.0.0'
-          base-values-file: ${{ github.workspace }}/.prettierrc.yml
-          template-file: ${{ github.workspace }}/.markdown-lint.yml
+          # chart-type: 'oci'
+          # chart-url: oci://ghcr.io/stefanprodan/charts/podinfo
+          # chart-version: 'v7.0.0'
+          # base-values-file: ${{ github.workspace }}/.prettierrc.yml
+          # template-file: ${{ github.workspace }}/.markdown-lint.yml
 
       - name: Print Application Version ID
         id: output
-        run:
-          echo "${{ steps.distr-create-version.outputs.created-version-id }}"
+        run: echo "${{ steps.distr-create-version.outputs.created-version-id }}"

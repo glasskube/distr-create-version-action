@@ -8,7 +8,7 @@ branding:
 
 inputs:
   api-base:
-    description: | 
+    description: |
       Path to the Distr API, must end with /api/v1 
       If you are using app.distr.sh, set to https://app.distr.sh/api/v1 – otherwise, e.g. https://distr.example.com/api/v1
     required: true
@@ -25,13 +25,19 @@ inputs:
     description: Name of the version that will be created
     required: true
   compose-file:
-    description: Absolute path to the Docker Compose File inside the runner (required for docker applications).
+    description:
+      Absolute path to the Docker Compose File inside the runner (required for
+      docker applications).
     required: false
   chart-type:
-    description: 'Helm Chart Type (required for helm applications, allowed: "repository" or "oci")'
+    description:
+      'Helm Chart Type (required for helm applications, allowed: "repository" or
+      "oci")'
     required: false
   chart-name:
-    description: Helm Chart Name (required for helm applications if chart-type is "repository")
+    description:
+      Helm Chart Name (required for helm applications if chart-type is
+      "repository")
     required: false
   chart-version:
     description: Helm Chart Version (required for helm applications)

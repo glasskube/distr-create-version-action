@@ -1,9 +1,10 @@
 # distr-create-version
 
-This action creates a new version of a Distr application. 
+This action creates a new version of a Distr application.
 
-Hook it into your CI/CD pipeline to automatically create a new version of your application in Distr, every time you push a new release.
-It supports both Docker and Helm applications.
+Hook it into your CI/CD pipeline to automatically create a new version of your
+application in Distr, every time you push a new release. It supports both Docker
+and Helm applications.
 
 ## Usage
 
@@ -12,31 +13,31 @@ See [action.yml](action.yml).
 ```yaml
 - uses: glasskube/create-distr-version
   with:
-    # Path to the Distr API, must end with /api/v1 
+    # Path to the Distr API, must end with /api/v1
     # If you are using app.distr.sh, set to https://app.distr.sh/api/v1 – otherwise, e.g. https://distr.example.com/api/v1
     # Required
     api-base: ''
-    
-    # Distr Personal Access Token used to authenticate with the Distr API, 
+
+    # Distr Personal Access Token used to authenticate with the Distr API,
     # to create one, see https://distr.sh/docs/integrations/personal-access-token/
     # This is sensitive, so make sure to use a Github Repository secret to store and read it safely
     # https://docs.github.com/en/actions/security-for-github-actions/security-guides/using-secrets-in-github-actions
     # Required
     api-token: ''
-    
+
     # ID of the Distr application that the version will be created in.
     # You can find and easily copy this ID in the list of applications in the Distr Web UI.
     application-id: ''
-    
+
     # Name of the version that will be created
     # Required
     version-name: ''
-    
+
     # Absolute path to the Docker Compose File inside the runner.
     # Example usage: ${{ github.workspace }}/docker-compose-prod.yml
     # Required for docker applications
     compose-file: ''
-    
+
     # Helm Chart Type (allowed: "repository" or "oci")
     # Required for helm applications
     chart-type: ''
@@ -46,15 +47,15 @@ See [action.yml](action.yml).
 
     # Helm Chart Version (required for helm applications)
     chart-version: ''
-    
+
     # Helm Chart URL (required for helm applications)
     chart-url: ''
-    
+
     # Absolute path to the base values file for helm applications.
     # Example usage: ${{ github.workspace }}/base-values.yml
     # Optional
     base-values-file: ''
-    
+
     # Absolute path to template file for helm applications.
     # Example usage: ${{ github.workspace }}/template.yml
     # Optional
@@ -67,7 +68,7 @@ See [action.yml](action.yml).
 - name: Checkout
   id: checkout
   uses: actions/checkout@v4
-  
+
 - name: Create Distr Version
   id: distr-create-version
   uses: glasskube/create-distr-version@v1
@@ -77,7 +78,7 @@ See [action.yml](action.yml).
     application-id: '7fa566b3-a20e-4b09-814c-5193c1469f7c'
     version-name: 'v1.0.0'
     compose-file: ${{ github.workspace }}/docker-compose-prod.yml
-    
+
 - name: Print Application Version ID
   id: output
   run: echo "${{ steps.distr-create-version.outputs.created-version-id }}"
@@ -89,7 +90,7 @@ See [action.yml](action.yml).
 - name: Checkout
   id: checkout
   uses: actions/checkout@v4
-  
+
 - name: Create Distr Version
   id: distr-create-version
   uses: glasskube/create-distr-version@v1
@@ -102,7 +103,7 @@ See [action.yml](action.yml).
     chart-url: oci://ghcr.io/your-org/charts/your-chart
     chart-version: 'v1.0.0'
     base-values-file: ${{ github.workspace }}/base-values.yml
-    
+
 - name: Print Application Version ID
   id: output
   run: echo "${{ steps.distr-create-version.outputs.created-version-id }}"
@@ -137,31 +138,31 @@ The bundle has to be commited to the repository, as it is used by the action.
 
 #### (Optional) Test your action locally
 
-   The [`@github/local-action`](https://github.com/github/local-action) utility
-   can be used to test your action locally. It is a simple command-line tool
-   that "stubs" (or simulates) the GitHub Actions Toolkit. This way, you can run
-   your TypeScript action locally without having to commit and push your changes
-   to a repository.
+The [`@github/local-action`](https://github.com/github/local-action) utility can
+be used to test your action locally. It is a simple command-line tool that
+"stubs" (or simulates) the GitHub Actions Toolkit. This way, you can run your
+TypeScript action locally without having to commit and push your changes to a
+repository.
 
-   The `local-action` utility can be run in the following ways:
+The `local-action` utility can be run in the following ways:
 
-   - Visual Studio Code Debugger
+- Visual Studio Code Debugger
 
-     Make sure to review and, if needed, update
-     [`.vscode/launch.json`](./.vscode/launch.json)
+  Make sure to review and, if needed, update
+  [`.vscode/launch.json`](./.vscode/launch.json)
 
-   - Terminal/Command Prompt
+- Terminal/Command Prompt
 
-     ```bash
-     # npx local action <action-yaml-path> <entrypoint> <dotenv-file>
-     npx local-action . src/main.ts .env
-     ```
+  ```bash
+  # npx local action <action-yaml-path> <entrypoint> <dotenv-file>
+  npx local-action . src/main.ts .env
+  ```
 
-   You can provide a `.env` file to the `local-action` CLI to set environment
-   variables used by the GitHub Actions Toolkit. For example, setting inputs and
-   event payload data used by your action. For more information, see the example
-   file, [`.env.example`](./.env.example), and the
-   [GitHub Actions Documentation](https://docs.github.com/en/actions/learn-github-actions/variables#default-environment-variables).
+You can provide a `.env` file to the `local-action` CLI to set environment
+variables used by the GitHub Actions Toolkit. For example, setting inputs and
+event payload data used by your action. For more information, see the example
+file, [`.env.example`](./.env.example), and the
+[GitHub Actions Documentation](https://docs.github.com/en/actions/learn-github-actions/variables#default-environment-variables).
 
 ## Validate the Action
 
