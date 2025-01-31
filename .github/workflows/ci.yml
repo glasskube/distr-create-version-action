@@ -34,11 +34,11 @@ jobs:
         id: distr-app-upload-action
         uses: ./
         with:
-          distr-api-base: ${{ vars.DISTR_API_BASE }}
-          distr-api-token: ${{ secrets.DISTR_TOKEN }}
-          distr-application-id: ${{ vars.DISTR_APPLICATION_ID }}
-          distr-application-version-name: 'v2.0.1' # ${{ github.ref_name }}
-          distr-application-version-compose-file:
+          api-base: ${{ vars.DISTR_API_BASE }}
+          api-token: ${{ secrets.DISTR_TOKEN }}
+          application-id: ${{ vars.DISTR_APPLICATION_ID }}
+          version-name: 'v2.0.2' # ${{ github.ref_name }}
+          compose-file:
             ${{ steps.read-docker-compose.outputs.data }}
         #env:
         #  DISTR_API_BASE: ${{ vars.DISTR_API_BASE }}
