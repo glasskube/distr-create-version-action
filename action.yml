@@ -25,8 +25,7 @@ inputs:
     description: Name of the version that will be created
     required: true
   compose-file:
-    description: 'Absolute path to the Docker Compose File inside the runner (required for docker applications).
-      Example usage: ${{ github.workspace }}/docker-compose-prod.yml'
+    description: 'Absolute path to the Docker Compose File inside the runner (required for docker applications). Example usage: ${{ github.workspace }}/docker-compose-prod.yml'
     required: false
   chart-type:
     description: 'Helm Chart Type (required for helm applications, allowed: "repository" or "oci")'
