@@ -8,39 +8,48 @@ import { DistrService } from '@glasskube/distr-sdk'
  */
 export async function run(): Promise<void> {
   try {
-    const appId = core.getInput('distr-application-id')
-    const versionName: string = core.getInput('distr-application-version-name')
-    const composeFile: string = core.getInput(
-      'distr-application-version-compose-file'
+    const token = core.getInput('api-token')
+    const apiBase = core.getInput('api-base')
+    const appId = core.getInput('application-id')
+    const versionName: string = core.getInput('version-name')
+    core.debug(
+      `apiBase: ${apiBase}, appId: ${appId}, versionName: ${versionName}, token given: ${token !== ''}`
     )
-
-    // Debug logs are only output if the `ACTIONS_STEP_DEBUG` secret is true
-    core.info(`appId: ${appId}, versionName: ${versionName}`)
-    core.info(`composeFile: ${composeFile}`)
-
-    const token = core.getInput('distr-api-token')
-    const apiBase = core.getInput('distr-api-base')
-
-    core.info(`apiBase: ${apiBase}`)
 
     const distr = new DistrService({
       apiBase: apiBase,
       apiKey: token
     })
 
-    const v = await distr.getLatestVersion(appId)
-    core.info(`latest version: ${JSON.stringify(v)}`)
-
-    const version = await distr.createDockerApplicationVersion(
-      appId,
-      versionName,
-      composeFile
-    )
-
-    core.info(new Date().toTimeString())
-
-    // Set outputs for other workflow steps to use
-    core.setOutput('version-id', version.id)
+    const composeFile: string = core.getInput('compose-file')
+    if (composeFile !== '') {
+      const version = await distr.createDockerApplicationVersion(
+        appId,
+        versionName,
+        composeFile
+      )
+      core.setOutput('created-version-id', version.id)
+    } else {
+      const chartName: string = core.getInput('chart-name')
+      const chartVersion: string = core.getInput('chart-version')
+      const chartType: string = core.getInput('chart-type')
+      const chartUrl: string = core.getInput('chart-url')
+      const baseValuesFile: string = core.getInput('base-values-file')
+      const templateFile: string = core.getInput('template-file')
+      const version = await distr.createKubernetesApplicationVersion(
+        appId,
+        versionName,
+        {
+          chartName,
+          chartVersion,
+          chartType,
+          chartUrl,
+          baseValuesFile,
+          templateFile
+        }
+      )
+      core.setOutput('created-version-id', version.id)
+    }
   } catch (error) {
     // Fail the workflow run if an error occurs
     if (error instanceof Error) core.setFailed(error.message)

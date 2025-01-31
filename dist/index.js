@@ -30188,25 +30188,37 @@ class DistrService {
  */
 async function run() {
     try {
-        const appId = coreExports.getInput('distr-application-id');
-        const versionName = coreExports.getInput('distr-application-version-name');
-        const composeFile = coreExports.getInput('distr-application-version-compose-file');
-        // Debug logs are only output if the `ACTIONS_STEP_DEBUG` secret is true
-        coreExports.info(`appId: ${appId}, versionName: ${versionName}`);
-        coreExports.info(`composeFile: ${composeFile}`);
-        const token = coreExports.getInput('distr-api-token');
-        const apiBase = coreExports.getInput('distr-api-base');
-        coreExports.info(`apiBase: ${apiBase}`);
+        const token = coreExports.getInput('api-token');
+        const apiBase = coreExports.getInput('api-base');
+        const appId = coreExports.getInput('application-id');
+        const versionName = coreExports.getInput('version-name');
+        coreExports.debug(`apiBase: ${apiBase}, appId: ${appId}, versionName: ${versionName}, token given: ${token !== ''}`);
         const distr = new DistrService({
             apiBase: apiBase,
             apiKey: token
         });
-        const v = await distr.getLatestVersion(appId);
-        coreExports.info(`latest version: ${JSON.stringify(v)}`);
-        const version = await distr.createDockerApplicationVersion(appId, versionName, composeFile);
-        coreExports.info(new Date().toTimeString());
-        // Set outputs for other workflow steps to use
-        coreExports.setOutput('version-id', version.id);
+        const composeFile = coreExports.getInput('compose-file');
+        if (composeFile !== '') {
+            const version = await distr.createDockerApplicationVersion(appId, versionName, composeFile);
+            coreExports.setOutput('created-version-id', version.id);
+        }
+        else {
+            const chartName = coreExports.getInput('chart-name');
+            const chartVersion = coreExports.getInput('chart-version');
+            const chartType = coreExports.getInput('chart-type');
+            const chartUrl = coreExports.getInput('chart-url');
+            const baseValuesFile = coreExports.getInput('base-values-file');
+            const templateFile = coreExports.getInput('template-file');
+            const version = await distr.createKubernetesApplicationVersion(appId, versionName, {
+                chartName,
+                chartVersion,
+                chartType,
+                chartUrl,
+                baseValuesFile,
+                templateFile
+            });
+            coreExports.setOutput('created-version-id', version.id);
+        }
     }
     catch (error) {
         // Fail the workflow run if an error occurs

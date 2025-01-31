@@ -1,34 +1,55 @@
-name: Distr App Upload Action
-description: Provide a description here
-author: Your name or organization here
+name: Distr Application Version Upload Action
+description:
+  This action creates a new application version of an application in Distr
+author: Glasskube
 
-# Add your action's branding here. This will appear on the GitHub Marketplace.
 branding:
   icon: heart
   color: red
 
-# Define your inputs here.
 inputs:
-  distr-api-base:
+  api-base:
     description: ID of the application that the version will be created in
     required: true
-  distr-api-token:
+  api-token:
     description: ID of the application that the version will be created in
     required: true
-  distr-application-id:
+  application-id:
     description: ID of the application that the version will be created in
     required: true
-  distr-application-version-name:
+  version-name:
     description: Name of the version that will be created
     required: true
-  distr-application-version-compose-file:
-    description: Compose File Contents
+  compose-file:
+    description:
+      'Docker Compose File Contents as YAML (required for docker applications)'
+    required: false
+  chart-name:
+    description:
+      'Helm Chart Name (required for helm applications and if chart-type is
+      "repository")'
+    required: false
+  chart-type:
+    description:
+      'Helm Chart Type (required for helm applications, allowed: "repository" or
+      "oci")'
+    required: false
+  chart-version:
+    description: 'Helm Chart Version (required for helm applications)'
+    required: false
+  chart-url:
+    description: 'Helm Chart URL (required for helm applications)'
+    required: false
+  base-values:
+    description: Base values for the Helm Chart as YAML
+    required: false
+  template:
+    description: Template for the Helm Chart
     required: false
 
-# Define your outputs here.
 outputs:
-  version-id:
-    description: Your output description here
+  created-version-id:
+    description: ID of the application version that was created in Distr
 
 runs:
   using: node20
