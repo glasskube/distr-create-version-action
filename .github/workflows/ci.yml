@@ -21,16 +21,7 @@ jobs:
         id: checkout
         uses: actions/checkout@v4
 
-      - name: Read Docker Compose File
-        id: read-docker-compose
-        run: |
-          EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64) # TODO check this
-          echo 'data<<EOF' >> $GITHUB_OUTPUT
-          echo "$(cat ${{ github.workspace }}/.yaml-lint.yml)" >> $GITHUB_OUTPUT
-          echo 'EOF' >> $GITHUB_OUTPUT
-        shell: bash
-
-      - name: Distr App Upload Action (local)
+      - name: Create Distr Version
         id: distr-app-upload-action
         uses: ./
         with:
