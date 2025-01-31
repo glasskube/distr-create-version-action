@@ -1,17 +1,17 @@
 {
-  "name": "typescript-action",
-  "description": "GitHub Actions TypeScript template",
-  "version": "0.0.0",
-  "author": "",
+  "name": "create-distr-version",
+  "description": "This action creates a new version of a Distr application",
+  "version": "1.0.0",
+  "license": "Apache-2.0",
   "type": "module",
   "private": true,
-  "homepage": "https://github.com/actions/typescript-action",
+  "homepage": "https://distr.sh",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/actions/typescript-action.git"
+    "url": "git+https://github.com/glasskube/create-distr-version.git"
   },
   "bugs": {
-    "url": "https://github.com/actions/typescript-action/issues"
+    "url": "https://github.com/glasskube/create-distr-version/issues"
   },
   "keywords": [
     "actions"
@@ -35,7 +35,6 @@
     "test": "NODE_OPTIONS=--experimental-vm-modules NODE_NO_WARNINGS=1 npx jest",
     "all": "npm run format:write && npm run lint && npm run package"
   },
-  "license": "MIT",
   "dependencies": {
     "@actions/core": "^1.11.1",
     "@glasskube/distr-sdk": "^1.0.0"

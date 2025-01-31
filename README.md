@@ -67,6 +67,7 @@ See [action.yml](action.yml).
 - name: Checkout
   id: checkout
   uses: actions/checkout@v4
+  
 - name: Create Distr Version
   id: distr-create-version
   uses: glasskube/create-distr-version
@@ -76,6 +77,7 @@ See [action.yml](action.yml).
     application-id: '7fa566b3-a20e-4b09-814c-5193c1469f7c'
     version-name: 'v1.0.0'
     compose-file: ${{ github.workspace }}/docker-compose-prod.yml
+    
 - name: Print Application Version ID
   id: output
   run: echo "${{ steps.distr-create-version.outputs.created-version-id }}"
@@ -87,6 +89,7 @@ See [action.yml](action.yml).
 - name: Checkout
   id: checkout
   uses: actions/checkout@v4
+  
 - name: Create Distr Version
   id: distr-create-version
   uses: glasskube/create-distr-version
@@ -98,6 +101,8 @@ See [action.yml](action.yml).
     chart-type: 'oci'
     chart-url: oci://ghcr.io/your-org/charts/your-chart
     chart-version: 'v1.0.0'
+    base-values-file: ${{ github.workspace }}/base-values.yml
+    
 - name: Print Application Version ID
   id: output
   run: echo "${{ steps.distr-create-version.outputs.created-version-id }}"
