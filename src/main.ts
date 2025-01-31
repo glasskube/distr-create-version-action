@@ -9,20 +9,17 @@ import * as fs from 'node:fs/promises'
  */
 export async function run(): Promise<void> {
   try {
-    const token = core.getInput('api-token')
-    const apiBase = core.getInput('api-base')
-    const appId = core.getInput('application-id')
-    const versionName: string = core.getInput('version-name')
-    core.debug(
-      `apiBase: ${apiBase}, appId: ${appId}, versionName: ${versionName}, token given: ${token !== ''}`
-    )
+    const token = requiredInput('api-token')
+    const apiBase = requiredInput('api-base')
+    const appId = requiredInput('application-id')
+    const versionName = requiredInput('version-name')
 
     const distr = new DistrService({
       apiBase: apiBase,
       apiKey: token
     })
 
-    const composePath: string = core.getInput('compose-file')
+    const composePath = core.getInput('compose-file')
     if (composePath !== '') {
       const composeFile = await fs.readFile(composePath, 'utf8')
       const version = await distr.createDockerApplicationVersion(
@@ -32,12 +29,13 @@ export async function run(): Promise<void> {
       )
       core.setOutput('created-version-id', version.id)
     } else {
-      const chartName: string = core.getInput('chart-name')
-      const chartVersion: string = core.getInput('chart-version')
-      const chartType = core.getInput('chart-type') as HelmChartType
-      const chartUrl: string = core.getInput('chart-url')
-      const baseValuesPath: string = core.getInput('base-values-file')
-      const templatePath: string = core.getInput('template-file')
+      const chartVersion = requiredInput('chart-version')
+      const chartType = requiredInput('chart-type') as HelmChartType
+      const chartName =
+        chartType === 'repository' ? requiredInput('chart-name') : undefined
+      const chartUrl = requiredInput('chart-url')
+      const baseValuesPath = core.getInput('base-values-file')
+      const templatePath = core.getInput('template-file')
 
       const baseValuesFile = baseValuesPath
         ? await fs.readFile(baseValuesPath, 'utf8')
@@ -63,4 +61,12 @@ export async function run(): Promise<void> {
     // Fail the workflow run if an error occurs
     if (error instanceof Error) core.setFailed(error.message)
   }
+}
+
+function requiredInput(id: string): string {
+  const val = core.getInput(id)
+  if (val === undefined || val === null || val === '') {
+    throw new Error(`Input ${id} is required`)
+  }
+  return val
 }

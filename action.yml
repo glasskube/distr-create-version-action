@@ -40,10 +40,10 @@ inputs:
     description: 'Helm Chart URL (required for helm applications)'
     required: false
   base-values-file:
-    description: Path to the base values file
+    description: Path to the base values file for helm applications
     required: false
   template-file:
-    description: Path to the template file
+    description: Path to the template file for helm applications
     required: false
 
 outputs:

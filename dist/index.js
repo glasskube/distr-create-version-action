@@ -30189,11 +30189,10 @@ class DistrService {
  */
 async function run() {
     try {
-        const token = coreExports.getInput('api-token');
-        const apiBase = coreExports.getInput('api-base');
-        const appId = coreExports.getInput('application-id');
-        const versionName = coreExports.getInput('version-name');
-        coreExports.debug(`apiBase: ${apiBase}, appId: ${appId}, versionName: ${versionName}, token given: ${token !== ''}`);
+        const token = requiredInput('api-token');
+        const apiBase = requiredInput('api-base');
+        const appId = requiredInput('application-id');
+        const versionName = requiredInput('version-name');
         const distr = new DistrService({
             apiBase: apiBase,
             apiKey: token
@@ -30205,10 +30204,10 @@ async function run() {
             coreExports.setOutput('created-version-id', version.id);
         }
         else {
-            const chartName = coreExports.getInput('chart-name');
-            const chartVersion = coreExports.getInput('chart-version');
-            const chartType = coreExports.getInput('chart-type');
-            const chartUrl = coreExports.getInput('chart-url');
+            const chartVersion = requiredInput('chart-version');
+            const chartType = requiredInput('chart-type');
+            const chartName = chartType === 'repository' ? requiredInput('chart-name') : undefined;
+            const chartUrl = requiredInput('chart-url');
             const baseValuesPath = coreExports.getInput('base-values-file');
             const templatePath = coreExports.getInput('template-file');
             const baseValuesFile = baseValuesPath
@@ -30233,6 +30232,13 @@ async function run() {
         if (error instanceof Error)
             coreExports.setFailed(error.message);
     }
+}
+function requiredInput(id) {
+    const val = coreExports.getInput(id);
+    if (val === undefined || val === null || val === '') {
+        throw new Error(`Input ${id} is required`);
+    }
+    return val;
 }
 
 /**
