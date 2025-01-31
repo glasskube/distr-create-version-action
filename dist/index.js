@@ -30198,10 +30198,10 @@ async function run() {
             apiBase: apiBase,
             apiKey: token
         });
-        const composeFile = coreExports.getInput('compose-file');
-        if (composeFile !== '') {
-            const composeData = await fs.readFile(composeFile, 'utf8');
-            const version = await distr.createDockerApplicationVersion(appId, versionName, composeData);
+        const composePath = coreExports.getInput('compose-file');
+        if (composePath !== '') {
+            const composeFile = await fs.readFile(composePath, 'utf8');
+            const version = await distr.createDockerApplicationVersion(appId, versionName, composeFile);
             coreExports.setOutput('created-version-id', version.id);
         }
         else {
@@ -30209,21 +30209,21 @@ async function run() {
             const chartVersion = coreExports.getInput('chart-version');
             const chartType = coreExports.getInput('chart-type');
             const chartUrl = coreExports.getInput('chart-url');
-            const baseValuesFile = coreExports.getInput('base-values-file');
-            const templateFile = coreExports.getInput('template-file');
-            const baseValuesFileData = baseValuesFile
-                ? await fs.readFile(baseValuesFile, 'utf8')
+            const baseValuesPath = coreExports.getInput('base-values-file');
+            const templatePath = coreExports.getInput('template-file');
+            const baseValuesFile = baseValuesPath
+                ? await fs.readFile(baseValuesPath, 'utf8')
                 : undefined;
-            const templateFileData = templateFile
-                ? await fs.readFile(templateFile, 'utf8')
+            const templateFile = templatePath
+                ? await fs.readFile(templatePath, 'utf8')
                 : undefined;
             const version = await distr.createKubernetesApplicationVersion(appId, versionName, {
                 chartName,
                 chartVersion,
                 chartType,
                 chartUrl,
-                baseValuesFileData,
-                templateFileData
+                baseValuesFile,
+                templateFile
             });
             coreExports.setOutput('created-version-id', version.id);
         }

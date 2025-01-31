@@ -1,5 +1,5 @@
 import * as core from '@actions/core'
-import { DistrService } from '@glasskube/distr-sdk'
+import { DistrService, HelmChartType } from '@glasskube/distr-sdk'
 import * as fs from 'node:fs/promises'
 
 /**
@@ -22,28 +22,28 @@ export async function run(): Promise<void> {
       apiKey: token
     })
 
-    const composeFile: string = core.getInput('compose-file')
-    if (composeFile !== '') {
-      const composeData = await fs.readFile(composeFile, 'utf8')
+    const composePath: string = core.getInput('compose-file')
+    if (composePath !== '') {
+      const composeFile = await fs.readFile(composePath, 'utf8')
       const version = await distr.createDockerApplicationVersion(
         appId,
         versionName,
-        composeData
+        composeFile
       )
       core.setOutput('created-version-id', version.id)
     } else {
       const chartName: string = core.getInput('chart-name')
       const chartVersion: string = core.getInput('chart-version')
-      const chartType: string = core.getInput('chart-type')
+      const chartType = core.getInput('chart-type') as HelmChartType
       const chartUrl: string = core.getInput('chart-url')
-      const baseValuesFile: string = core.getInput('base-values-file')
-      const templateFile: string = core.getInput('template-file')
+      const baseValuesPath: string = core.getInput('base-values-file')
+      const templatePath: string = core.getInput('template-file')
 
-      const baseValuesFileData = baseValuesFile
-        ? await fs.readFile(baseValuesFile, 'utf8')
+      const baseValuesFile = baseValuesPath
+        ? await fs.readFile(baseValuesPath, 'utf8')
         : undefined
-      const templateFileData = templateFile
-        ? await fs.readFile(templateFile, 'utf8')
+      const templateFile = templatePath
+        ? await fs.readFile(templatePath, 'utf8')
         : undefined
       const version = await distr.createKubernetesApplicationVersion(
         appId,
@@ -53,8 +53,8 @@ export async function run(): Promise<void> {
           chartVersion,
           chartType,
           chartUrl,
-          baseValuesFileData,
-          templateFileData
+          baseValuesFile,
+          templateFile
         }
       )
       core.setOutput('created-version-id', version.id)
