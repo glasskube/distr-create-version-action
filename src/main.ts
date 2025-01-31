@@ -1,5 +1,6 @@
 import * as core from '@actions/core'
 import { DistrService } from '@glasskube/distr-sdk'
+import * as fs from 'node:fs/promises'
 
 /**
  * The main function for the action.
@@ -23,10 +24,11 @@ export async function run(): Promise<void> {
 
     const composeFile: string = core.getInput('compose-file')
     if (composeFile !== '') {
+      const composeData = await fs.readFile(composeFile, 'utf8')
       const version = await distr.createDockerApplicationVersion(
         appId,
         versionName,
-        composeFile
+        composeData
       )
       core.setOutput('created-version-id', version.id)
     } else {
@@ -36,6 +38,9 @@ export async function run(): Promise<void> {
       const chartUrl: string = core.getInput('chart-url')
       const baseValuesFile: string = core.getInput('base-values-file')
       const templateFile: string = core.getInput('template-file')
+
+      const baseValuesFileData = await fs.readFile(baseValuesFile, 'utf8')
+      const templateFileData = await fs.readFile(templateFile, 'utf8')
       const version = await distr.createKubernetesApplicationVersion(
         appId,
         versionName,
@@ -44,8 +49,8 @@ export async function run(): Promise<void> {
           chartVersion,
           chartType,
           chartUrl,
-          baseValuesFile,
-          templateFile
+          baseValuesFileData,
+          templateFileData
         }
       )
       core.setOutput('created-version-id', version.id)

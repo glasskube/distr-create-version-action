@@ -27,6 +27,7 @@ import require$$6 from 'string_decoder';
 import require$$0$9 from 'diagnostics_channel';
 import require$$2$2 from 'child_process';
 import require$$6$1 from 'timers';
+import * as fs from 'node:fs/promises';
 
 var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
 
@@ -30199,7 +30200,8 @@ async function run() {
         });
         const composeFile = coreExports.getInput('compose-file');
         if (composeFile !== '') {
-            const version = await distr.createDockerApplicationVersion(appId, versionName, composeFile);
+            const composeData = await fs.readFile(composeFile, 'utf8');
+            const version = await distr.createDockerApplicationVersion(appId, versionName, composeData);
             coreExports.setOutput('created-version-id', version.id);
         }
         else {
@@ -30209,13 +30211,15 @@ async function run() {
             const chartUrl = coreExports.getInput('chart-url');
             const baseValuesFile = coreExports.getInput('base-values-file');
             const templateFile = coreExports.getInput('template-file');
+            const baseValuesFileData = await fs.readFile(baseValuesFile, 'utf8');
+            const templateFileData = await fs.readFile(templateFile, 'utf8');
             const version = await distr.createKubernetesApplicationVersion(appId, versionName, {
                 chartName,
                 chartVersion,
                 chartType,
                 chartUrl,
-                baseValuesFile,
-                templateFile
+                baseValuesFileData,
+                templateFileData
             });
             coreExports.setOutput('created-version-id', version.id);
         }

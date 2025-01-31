@@ -1,6 +1,5 @@
 name: Distr Create Version
-description:
-  This action creates a new version of an application in Distr
+description: This action creates a new version of an application in Distr
 author: Glasskube
 
 branding:
@@ -22,7 +21,7 @@ inputs:
     required: true
   compose-file:
     description:
-      'Docker Compose File Contents as YAML (required for docker applications)'
+      'Path to the Docker Compose File (required for docker applications)'
     required: false
   chart-name:
     description:
@@ -41,10 +40,10 @@ inputs:
     description: 'Helm Chart URL (required for helm applications)'
     required: false
   base-values:
-    description: Base values for the Helm Chart as YAML
+    description: Path to the base values file
     required: false
   template:
-    description: Template for the Helm Chart
+    description: Path to the template file
     required: false
 
 outputs:

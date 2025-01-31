@@ -37,13 +37,10 @@ jobs:
           api-base: ${{ vars.DISTR_API_BASE }}
           api-token: ${{ secrets.DISTR_TOKEN }}
           application-id: ${{ vars.DISTR_APPLICATION_ID }}
-          version-name: 'v2.0.2' # ${{ github.ref_name }}
-          compose-file:
-            ${{ steps.read-docker-compose.outputs.data }}
-        #env:
-        #  DISTR_API_BASE: ${{ vars.DISTR_API_BASE }}
-        #  DISTR_TOKEN: ${{ secrets.DISTR_TOKEN }}
+          version-name: 'v2.0.5' # ${{ github.ref_name }}
+          compose-file: ${{ github.workspace }}/.yaml-lint.yml
 
       - name: Print Application Version ID
         id: output
-        run: echo "${{ steps.distr-app-upload-action.outputs.created-version-id }}"
+        run:
+          echo "${{ steps.distr-app-upload-action.outputs.created-version-id }}"
