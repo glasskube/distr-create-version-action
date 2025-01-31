@@ -39,10 +39,10 @@ inputs:
   chart-url:
     description: 'Helm Chart URL (required for helm applications)'
     required: false
-  base-values:
+  base-values-file:
     description: Path to the base values file
     required: false
-  template:
+  template-file:
     description: Path to the template file
     required: false
 

@@ -42,8 +42,8 @@ jobs:
           chart-type: 'oci'
           chart-url: oci://ghcr.io/stefanprodan/charts/podinfo
           chart-version: 'v7.0.0'
-          base-values: ${{ github.workspace }}/.prettierrc.yml
-          template: ${{ github.workspace }}/.markdown-lint.yml
+          base-values-file: ${{ github.workspace }}/.prettierrc.yml
+          template-file: ${{ github.workspace }}/.markdown-lint.yml
 
       - name: Print Application Version ID
         id: output

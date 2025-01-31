@@ -30211,8 +30211,12 @@ async function run() {
             const chartUrl = coreExports.getInput('chart-url');
             const baseValuesFile = coreExports.getInput('base-values-file');
             const templateFile = coreExports.getInput('template-file');
-            const baseValuesFileData = await fs.readFile(baseValuesFile, 'utf8');
-            const templateFileData = await fs.readFile(templateFile, 'utf8');
+            const baseValuesFileData = baseValuesFile
+                ? await fs.readFile(baseValuesFile, 'utf8')
+                : undefined;
+            const templateFileData = templateFile
+                ? await fs.readFile(templateFile, 'utf8')
+                : undefined;
             const version = await distr.createKubernetesApplicationVersion(appId, versionName, {
                 chartName,
                 chartVersion,
