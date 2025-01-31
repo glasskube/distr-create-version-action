@@ -27,7 +27,7 @@ jobs:
         with:
           api-base: ${{ vars.DISTR_API_BASE }}
           api-token: ${{ secrets.DISTR_TOKEN }}
-          application-id: '7fa566b3-a20e-4b09-814c-5193c1469f7c' # ${{ vars.DISTR_APPLICATION_ID }}
+          # application-id: '7fa566b3-a20e-4b09-814c-5193c1469f7c' # ${{ vars.DISTR_APPLICATION_ID }}
           version-name: 'v7.0.0' # ${{ github.ref_name }}
           # compose-file: ${{ github.workspace }}/.yaml-lint.yml
           chart-type: 'oci'
