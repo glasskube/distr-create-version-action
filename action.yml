@@ -1,6 +1,6 @@
-name: Distr Application Version Upload Action
+name: Distr Create Version
 description:
-  This action creates a new application version of an application in Distr
+  This action creates a new version of an application in Distr
 author: Glasskube
 
 branding:
