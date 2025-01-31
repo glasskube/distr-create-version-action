@@ -121,13 +121,13 @@ See [action.yml](action.yml).
 > `.node-version` file is used by GitHub Actions in any `actions/setup-node`
 > actions.
 
-Install dependencies:
+### Install dependencies
 
 ```bash
 npm install
 ```
 
-After coding, build the JS bundle:
+### Build the JS bundle
 
 ```bash
 npm run all
@@ -135,7 +135,7 @@ npm run all
 
 The bundle has to be commited to the repository, as it is used by the action.
 
-(Optional) Test your action locally
+#### (Optional) Test your action locally
 
    The [`@github/local-action`](https://github.com/github/local-action) utility
    can be used to test your action locally. It is a simple command-line tool
