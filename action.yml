@@ -8,42 +8,48 @@ branding:
 
 inputs:
   api-base:
-    description: ID of the application that the version will be created in
+    description: | 
+      Path to the Distr API, must end with /api/v1 
+      If you are using app.distr.sh, set to https://app.distr.sh/api/v1 – otherwise, e.g. https://distr.example.com/api/v1
     required: true
   api-token:
-    description: ID of the application that the version will be created in
+    description: |
+      Personal Access Token used to authenticate with the Distr API, also see https://distr.sh/docs/integrations/personal-access-token/
     required: true
   application-id:
-    description: ID of the application that the version will be created in
+    description: |
+      ID of the application that the version will be created in. 
+      You can find and easily copy this ID in the list of applications in the Distr Web UI.
     required: true
   version-name:
     description: Name of the version that will be created
     required: true
   compose-file:
-    description:
-      'Path to the Docker Compose File (required for docker applications)'
-    required: false
-  chart-name:
-    description:
-      'Helm Chart Name (required for helm applications and if chart-type is
-      "repository")'
+    description: |
+      Absolute path to the Docker Compose File inside the runner (required for docker applications).
+      Example usage: ${{ github.workspace }}/docker-compose-prod.yml
     required: false
   chart-type:
-    description:
-      'Helm Chart Type (required for helm applications, allowed: "repository" or
-      "oci")'
+    description: 'Helm Chart Type (required for helm applications, allowed: "repository" or "oci")'
+    required: false
+  chart-name:
+    description: Helm Chart Name (required for helm applications if chart-type is "repository")
     required: false
   chart-version:
-    description: 'Helm Chart Version (required for helm applications)'
+    description: Helm Chart Version (required for helm applications)
     required: false
   chart-url:
-    description: 'Helm Chart URL (required for helm applications)'
+    description: Helm Chart URL (required for helm applications)
     required: false
   base-values-file:
-    description: Path to the base values file for helm applications
+    description: |
+      Absolute path to the base values file for helm applications.
+      Example usage: ${{ github.workspace }}/base-values.yml
     required: false
   template-file:
-    description: Path to the template file for helm applications
+    description: |
+      Absolute path to template file for helm applications.
+      Example usage: ${{ github.workspace }}/template.yml
     required: false
 
 outputs:

@@ -22,7 +22,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Create Distr Version
-        id: distr-app-upload-action
+        id: distr-create-version
         uses: ./
         with:
           api-base: ${{ vars.DISTR_API_BASE }}
@@ -39,4 +39,4 @@ jobs:
       - name: Print Application Version ID
         id: output
         run:
-          echo "${{ steps.distr-app-upload-action.outputs.created-version-id }}"
+          echo "${{ steps.distr-create-version.outputs.created-version-id }}"
