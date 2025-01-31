@@ -46,4 +46,4 @@ jobs:
 
       - name: Print Application Version ID
         id: output
-        run: echo "${{ steps.distr-app-upload-action.outputs.version-id }}"
+        run: echo "${{ steps.distr-app-upload-action.outputs.created-version-id }}"
