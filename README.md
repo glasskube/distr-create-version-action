@@ -61,7 +61,7 @@ See [action.yml](action.yml).
     template-file: ''
 ```
 
-** Docker Example **
+**Docker Example**
 
 ```yaml
 - name: Checkout
@@ -81,7 +81,7 @@ See [action.yml](action.yml).
   run: echo "${{ steps.distr-create-version.outputs.created-version-id }}"
 ```
 
-** Helm Example **
+**Helm Example**
 
 ```yaml
 - name: Checkout
