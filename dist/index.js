@@ -30235,7 +30235,7 @@ async function run() {
 }
 function requiredInput(id) {
     const val = coreExports.getInput(id);
-    if (val === undefined || val === null || val === '') {
+    if (val === '') {
         throw new Error(`Input ${id} is required`);
     }
     return val;

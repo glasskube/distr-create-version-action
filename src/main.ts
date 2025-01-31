@@ -65,7 +65,7 @@ export async function run(): Promise<void> {
 
 function requiredInput(id: string): string {
   const val = core.getInput(id)
-  if (val === undefined || val === null || val === '') {
+  if (val === '') {
     throw new Error(`Input ${id} is required`)
   }
   return val
