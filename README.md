@@ -15,8 +15,7 @@ See [action.yml](action.yml).
 - uses: glasskube/create-distr-version
   with:
     # Path to the Distr API, must end with /api/v1
-    # If you are using app.distr.sh, set to https://app.distr.sh/api/v1 – otherwise, e.g. https://distr.example.com/api/v1
-    # Required
+    # Defaults to https://app.distr.sh/api/v1 – if you are selfhosting set to, e.g. https://distr.example.com/api/v1
     api-base: ''
 
     # Distr Personal Access Token used to authenticate with the Distr API,

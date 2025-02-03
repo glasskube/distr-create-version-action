@@ -30190,7 +30190,7 @@ class DistrService {
 async function run() {
     try {
         const token = requiredInput('api-token');
-        const apiBase = requiredInput('api-base');
+        const apiBase = coreExports.getInput('api-base') || undefined;
         const appId = requiredInput('application-id');
         const versionName = requiredInput('version-name');
         const distr = new DistrService({

@@ -10,7 +10,7 @@ import * as fs from 'node:fs/promises';
 export async function run(): Promise<void> {
   try {
     const token = requiredInput('api-token');
-    const apiBase = requiredInput('api-base');
+    const apiBase = core.getInput('api-base') || undefined;
     const appId = requiredInput('application-id');
     const versionName = requiredInput('version-name');
 
