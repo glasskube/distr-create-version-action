@@ -30217,7 +30217,7 @@ async function run() {
                 ? await fs.readFile(templatePath, 'utf8')
                 : undefined;
             const version = await distr.createKubernetesApplicationVersion(appId, versionName, {
-                chartName: chartName ?? '',
+                chartName,
                 chartVersion,
                 chartType,
                 chartUrl,

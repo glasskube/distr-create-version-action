@@ -1,6 +1,7 @@
 # distr-create-version
 
-This action creates a new version of a [Distr](https://github.com/glasskube/distr) application.
+This action creates a new version of a
+[Distr](https://github.com/glasskube/distr) application.
 
 Hook it into your CI/CD pipeline to automatically create a new version of your
 application in Distr, every time you push a new release. It supports both Docker

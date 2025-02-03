@@ -33,7 +33,7 @@
   },
   "dependencies": {
     "@actions/core": "^1.11.1",
-    "@glasskube/distr-sdk": "^1.0.0"
+    "@glasskube/distr-sdk": "^1.0.1"
   },
   "devDependencies": {
     "@eslint/compat": "^1.2.5",

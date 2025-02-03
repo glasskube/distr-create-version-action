@@ -47,7 +47,7 @@ export async function run(): Promise<void> {
         appId,
         versionName,
         {
-          chartName: chartName ?? '',
+          chartName,
           chartVersion,
           chartType,
           chartUrl,
