@@ -1,0 +1,58 @@
+name: Distr Create Version
+description: This action creates a new version of an application in Distr
+author: Glasskube
+
+branding:
+  icon: heart
+  color: red
+
+inputs:
+  api-base:
+    description: |
+      Path to the Distr API, must end with /api/v1 
+      If you are using app.distr.sh, set to https://app.distr.sh/api/v1 – otherwise, e.g. https://distr.example.com/api/v1
+    required: true
+  api-token:
+    description: |
+      Personal Access Token used to authenticate with the Distr API, also see https://distr.sh/docs/integrations/personal-access-token/
+    required: true
+  application-id:
+    description: |
+      ID of the application that the version will be created in. 
+      You can find and easily copy this ID in the list of applications in the Distr Web UI.
+    required: true
+  version-name:
+    description: Name of the version that will be created
+    required: true
+  compose-file:
+    description: Absolute path to the Docker Compose File inside the runner (required for
+      docker applications).
+    required: false
+  chart-type:
+    description: 'Helm Chart Type (required for helm applications, allowed: "repository" or
+      "oci")'
+    required: false
+  chart-name:
+    description: Helm Chart Name (required for helm applications if chart-type is
+      "repository")
+    required: false
+  chart-version:
+    description: Helm Chart Version (required for helm applications)
+    required: false
+  chart-url:
+    description: Helm Chart URL (required for helm applications)
+    required: false
+  base-values-file:
+    description: Absolute path to the base values file for helm applications.
+    required: false
+  template-file:
+    description: Absolute path to template file for helm applications.
+    required: false
+
+outputs:
+  created-version-id:
+    description: ID of the application version that was created in Distr
+
+runs:
+  using: node20
+  main: dist/index.js
