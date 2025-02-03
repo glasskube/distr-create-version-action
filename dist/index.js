@@ -30195,7 +30195,7 @@ async function run() {
         const versionName = requiredInput('version-name');
         const distr = new DistrService({
             apiBase: apiBase,
-            apiKey: token
+            apiKey: token,
         });
         const composePath = coreExports.getInput('compose-file');
         if (composePath !== '') {
@@ -30210,19 +30210,15 @@ async function run() {
             const chartUrl = requiredInput('chart-url');
             const baseValuesPath = coreExports.getInput('base-values-file');
             const templatePath = coreExports.getInput('template-file');
-            const baseValuesFile = baseValuesPath
-                ? await fs.readFile(baseValuesPath, 'utf8')
-                : undefined;
-            const templateFile = templatePath
-                ? await fs.readFile(templatePath, 'utf8')
-                : undefined;
+            const baseValuesFile = baseValuesPath ? await fs.readFile(baseValuesPath, 'utf8') : undefined;
+            const templateFile = templatePath ? await fs.readFile(templatePath, 'utf8') : undefined;
             const version = await distr.createKubernetesApplicationVersion(appId, versionName, {
                 chartName,
                 chartVersion,
                 chartType,
                 chartUrl,
                 baseValuesFile,
-                templateFile
+                templateFile,
             });
             coreExports.setOutput('created-version-id', version.id);
         }

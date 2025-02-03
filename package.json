@@ -23,13 +23,12 @@
     "node": ">=20"
   },
   "scripts": {
-    "bundle": "npm run format:write && npm run package",
-    "format:write": "npx prettier --write .",
-    "format:check": "npx prettier --check .",
-    "lint": "npx eslint .",
+    "bundle": "npm run lint:fix && npm run package",
+    "lint": "prettier --check .",
+    "lint:fix": "prettier --write .",
     "local-action": "npx local-action . src/main.ts .env",
     "package": "npx rollup --config rollup.config.ts --configPlugin @rollup/plugin-typescript",
-    "all": "npm run format:write && npm run lint && npm run package"
+    "all": "npm run lint:fix && npm run lint && npm run package"
   },
   "dependencies": {
     "@actions/core": "^1.11.1",

@@ -25,18 +25,15 @@ inputs:
     description: Name of the version that will be created
     required: true
   compose-file:
-    description:
-      Absolute path to the Docker Compose File inside the runner (required for
+    description: Absolute path to the Docker Compose File inside the runner (required for
       docker applications).
     required: false
   chart-type:
-    description:
-      'Helm Chart Type (required for helm applications, allowed: "repository" or
+    description: 'Helm Chart Type (required for helm applications, allowed: "repository" or
       "oci")'
     required: false
   chart-name:
-    description:
-      Helm Chart Name (required for helm applications if chart-type is
+    description: Helm Chart Name (required for helm applications if chart-type is
       "repository")
     required: false
   chart-version:
