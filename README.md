@@ -1,4 +1,4 @@
-# distr-create-version
+# distr-create-version-action
 
 This action creates a new version of a
 [Distr](https://github.com/glasskube/distr) application.
