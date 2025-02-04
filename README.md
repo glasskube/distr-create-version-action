@@ -12,7 +12,7 @@ and Helm applications.
 See [action.yml](action.yml).
 
 ```yaml
-- uses: glasskube/create-distr-version
+- uses: glasskube/create-distr-version-action
   with:
     # Path to the Distr API, must end with /api/v1
     # Defaults to https://app.distr.sh/api/v1 – if you are selfhosting set to, e.g. https://distr.example.com/api/v1
@@ -71,7 +71,7 @@ See [action.yml](action.yml).
 
 - name: Create Distr Version
   id: distr-create-version
-  uses: glasskube/create-distr-version@v1
+  uses: glasskube/create-distr-version-action@v1
   with:
     api-base: ${{ vars.DISTR_API_BASE }}
     api-token: ${{ secrets.DISTR_API_TOKEN }}
@@ -93,7 +93,7 @@ See [action.yml](action.yml).
 
 - name: Create Distr Version
   id: distr-create-version
-  uses: glasskube/create-distr-version@v1
+  uses: glasskube/create-distr-version-action@v1
   with:
     api-base: ${{ vars.DISTR_API_BASE }}
     api-token: ${{ secrets.DISTR_API_TOKEN }}
@@ -188,7 +188,7 @@ steps:
 ```
 
 For example workflow runs, check out the
-[Actions tab](https://github.com/glasskube/create-distr-version/actions)!
+[Actions tab](https://github.com/glasskube/create-distr-version-action/actions)!
 
 ## Publishing a New Release
 
