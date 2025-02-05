@@ -20,9 +20,14 @@ export async function run(): Promise<void> {
     });
 
     const composePath = core.getInput('compose-file');
+    const templatePath = core.getInput('template-file');
+    const templateFile = templatePath ? await fs.readFile(templatePath, 'utf8') : undefined;
+
     if (composePath !== '') {
       const composeFile = await fs.readFile(composePath, 'utf8');
-      const version = await distr.createDockerApplicationVersion(appId, versionName, composeFile);
+      const version = await distr.createDockerApplicationVersion(appId, versionName, {
+        composeFile, templateFile
+      });
       core.setOutput('created-version-id', version.id);
     } else {
       const chartVersion = requiredInput('chart-version');
@@ -30,10 +35,7 @@ export async function run(): Promise<void> {
       const chartName = chartType === 'repository' ? requiredInput('chart-name') : undefined;
       const chartUrl = requiredInput('chart-url');
       const baseValuesPath = core.getInput('base-values-file');
-      const templatePath = core.getInput('template-file');
-
       const baseValuesFile = baseValuesPath ? await fs.readFile(baseValuesPath, 'utf8') : undefined;
-      const templateFile = templatePath ? await fs.readFile(templatePath, 'utf8') : undefined;
       const version = await distr.createKubernetesApplicationVersion(appId, versionName, {
         chartName,
         chartVersion,

@@ -46,7 +46,7 @@ inputs:
     description: Absolute path to the base values file for helm applications.
     required: false
   template-file:
-    description: Absolute path to template file for helm applications.
+    description: Absolute path to template file for both helm and docker applications.
     required: false
 
 outputs:
