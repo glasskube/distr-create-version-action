@@ -56,8 +56,8 @@ See [action.yml](action.yml).
     # Optional
     base-values-file: ''
 
-    # Absolute path to template file for helm applications.
-    # Example usage: ${{ github.workspace }}/template.yml
+    # Absolute path to template file for both helm and docker applications.
+    # Example usage: ${{ github.workspace }}/template
     # Optional
     template-file: ''
 ```
@@ -78,6 +78,7 @@ See [action.yml](action.yml).
     application-id: '7fa566b3-a20e-4b09-814c-5193c1469f7c'
     version-name: 'v1.0.0'
     compose-file: ${{ github.workspace }}/docker-compose-prod.yml
+    template-file: ${{ github.workspace }}/template.env
 
 - name: Print Application Version ID
   id: output
@@ -103,6 +104,7 @@ See [action.yml](action.yml).
     chart-url: oci://ghcr.io/your-org/charts/your-chart
     chart-version: 'v1.0.0'
     base-values-file: ${{ github.workspace }}/base-values.yml
+    template-file: ${{ github.workspace }}/template.yml
 
 - name: Print Application Version ID
   id: output

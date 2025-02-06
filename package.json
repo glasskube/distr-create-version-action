@@ -32,7 +32,7 @@
   },
   "dependencies": {
     "@actions/core": "^1.11.1",
-    "@glasskube/distr-sdk": "^1.0.1"
+    "@glasskube/distr-sdk": "^1.1.0"
   },
   "devDependencies": {
     "@github/local-action": "^2.5.1",
@@ -41,7 +41,7 @@
     "@rollup/plugin-typescript": "^12.1.1",
     "@types/node": "^22.0.0",
     "prettier": "^3.4.2",
-    "rollup": "^4.31.0",
+    "rollup": "^4.34.4",
     "ts-node": "^10.9.2",
     "typescript": "^5.7.3"
   },
