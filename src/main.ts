@@ -26,7 +26,8 @@ export async function run(): Promise<void> {
     if (composePath !== '') {
       const composeFile = await fs.readFile(composePath, 'utf8');
       const version = await distr.createDockerApplicationVersion(appId, versionName, {
-        composeFile, templateFile
+        composeFile,
+        templateFile,
       });
       core.setOutput('created-version-id', version.id);
     } else {
