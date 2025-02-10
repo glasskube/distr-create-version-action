@@ -71,7 +71,7 @@ See [action.yml](action.yml).
 
 - name: Create Distr Version
   id: distr-create-version
-  uses: glasskube/create-distr-version-action@v1
+  uses: glasskube/distr-create-version-action@v1
   with:
     api-base: ${{ vars.DISTR_API_BASE }}
     api-token: ${{ secrets.DISTR_API_TOKEN }}
@@ -94,7 +94,7 @@ See [action.yml](action.yml).
 
 - name: Create Distr Version
   id: distr-create-version
-  uses: glasskube/create-distr-version-action@v1
+  uses: glasskube/distr-create-version-action@v1
   with:
     api-base: ${{ vars.DISTR_API_BASE }}
     api-token: ${{ secrets.DISTR_API_TOKEN }}
