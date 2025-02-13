@@ -27251,7 +27251,10 @@ const defaultClientConfig = { apiBase: 'https://app.distr.sh/api/v1/' };
 class Client {
     config;
     constructor(config) {
-        this.config = { ...defaultClientConfig, ...config };
+        this.config = {
+            apiKey: config.apiKey,
+            apiBase: config.apiBase || defaultClientConfig.apiBase,
+        };
         if (!this.config.apiBase.endsWith('/')) {
             this.config.apiBase += '/';
         }
