@@ -41,11 +41,11 @@
     "@rollup/plugin-typescript": "^12.1.1",
     "@types/node": "^22.0.0",
     "prettier": "^3.4.2",
-    "rollup": "^4.34.4",
+    "rollup": "^4.34.7",
     "ts-node": "^10.9.2",
     "typescript": "^5.7.3"
   },
   "optionalDependencies": {
-    "@rollup/rollup-linux-x64-gnu": "*"
+    "@rollup/rollup-linux-x64-gnu": "4.34.7"
   }
 }
