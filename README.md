@@ -73,7 +73,6 @@ See [action.yml](action.yml).
   id: distr-create-version
   uses: glasskube/distr-create-version-action@v1
   with:
-    api-base: ${{ vars.DISTR_API_BASE }}
     api-token: ${{ secrets.DISTR_API_TOKEN }}
     application-id: '7fa566b3-a20e-4b09-814c-5193c1469f7c'
     version-name: 'v1.0.0'
@@ -96,7 +95,6 @@ See [action.yml](action.yml).
   id: distr-create-version
   uses: glasskube/distr-create-version-action@v1
   with:
-    api-base: ${{ vars.DISTR_API_BASE }}
     api-token: ${{ secrets.DISTR_API_TOKEN }}
     application-id: '7fa566b3-a20e-4b09-814c-5193c1469f7c'
     version-name: 'v1.0.0'
