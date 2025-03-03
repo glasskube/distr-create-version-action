@@ -35,7 +35,7 @@
     "@glasskube/distr-sdk": "^1.1.0"
   },
   "devDependencies": {
-    "@github/local-action": "^2.5.1",
+    "@github/local-action": "^3.0.0",
     "@rollup/plugin-commonjs": "^28.0.1",
     "@rollup/plugin-node-resolve": "^16.0.0",
     "@rollup/plugin-typescript": "^12.1.1",
