@@ -32,7 +32,7 @@
   },
   "dependencies": {
     "@actions/core": "^1.11.1",
-    "@glasskube/distr-sdk": "^1.1.0"
+    "@glasskube/distr-sdk": "^2.0.0"
   },
   "devDependencies": {
     "@github/local-action": "^2.5.1",
