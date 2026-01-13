@@ -50,6 +50,7 @@ jobs:
           api-token: ${{ secrets.DISTR_TOKEN }}
           application-id: ${{ vars.DISTR_APPLICATION_ID }}
           version-name: ${{ github.sha }}-${{ github.run_id }}
+          link-template: 'http://localhost'
           compose-file: ${{ github.workspace }}/action.yml
           # chart-type: 'oci'
           # chart-url: oci://ghcr.io/stefanprodan/charts/podinfo
