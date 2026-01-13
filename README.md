@@ -118,27 +118,16 @@ See [action.yml](action.yml).
 
 ## Development
 
-> [!NOTE]
->
-> You'll need to have a reasonably modern version of
-> [Node.js](https://nodejs.org) handy (20.x or later should work!). If you are
-> using a version manager like [`nodenv`](https://github.com/nodenv/nodenv) or
-> [`fnm`](https://github.com/Schniz/fnm), this template has a `.node-version`
-> file at the root of the repository that can be used to automatically switch to
-> the correct version when you `cd` into the repository. Additionally, this
-> `.node-version` file is used by GitHub Actions in any `actions/setup-node`
-> actions.
-
 ### Install dependencies
 
-```bash
-npm install
+```shell
+pnpm install
 ```
 
 ### Build the JS bundle
 
-```bash
-npm run all
+```shell
+pnpm run all
 ```
 
 The bundle has to be commited to the repository, as it is used by the action.
@@ -160,9 +149,8 @@ The `local-action` utility can be run in the following ways:
 
 - Terminal/Command Prompt
 
-  ```bash
-  # npx local action <action-yaml-path> <entrypoint> <dotenv-file>
-  npx local-action . src/main.ts .env
+  ```shell
+  pnpm exec local-action . src/main.ts .env
   ```
 
 You can provide a `.env` file to the `local-action` CLI to set environment
