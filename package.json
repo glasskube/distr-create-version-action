@@ -23,7 +23,7 @@
     "node": ">=20"
   },
   "scripts": {
-    "bundle": "pnpm run lint:fix && pnpm run package",
+    "bundle": "pnpm run format && pnpm run package",
     "lint": "prettier --check .",
     "format": "prettier --write .",
     "local-action": "npx local-action . src/main.ts .env",
