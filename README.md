@@ -61,6 +61,12 @@ See [action.yml](action.yml).
     # Optional
     template-file: ''
 
+    # Link template for accessing deployed applications. Use template variables like {{ .Env.VARIABLE_NAME }}
+    # to dynamically generate links based on deployment environment variables.
+    # Example: http://{{ .Env.HELLO_DISTR_HOST }}
+    # Optional
+    link-template: ''
+
     # If set to true, all deployments of the application will be updated to the newly created version.
     # This will update all deployment targets where this application is deployed.
     # Optional, defaults to false
@@ -83,6 +89,7 @@ See [action.yml](action.yml).
     version-name: 'v1.0.0'
     compose-file: ${{ github.workspace }}/docker-compose-prod.yml
     template-file: ${{ github.workspace }}/template.env
+    link-template: 'http://{{ .Env.APP_HOST }}'
     update-deployments: true
 
 - name: Print Application Version ID
@@ -109,6 +116,7 @@ See [action.yml](action.yml).
     chart-version: 'v1.0.0'
     base-values-file: ${{ github.workspace }}/base-values.yml
     template-file: ${{ github.workspace }}/template.yml
+    link-template: 'https://{{ .Env.INGRESS_HOST }}'
     update-deployments: true
 
 - name: Print Application Version ID

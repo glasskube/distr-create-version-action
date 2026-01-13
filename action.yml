@@ -48,6 +48,12 @@ inputs:
   template-file:
     description: Absolute path to template file for both helm and docker applications.
     required: false
+  link-template:
+    description: |
+      Link template for accessing deployed applications. Use template variables like {{ .Env.VARIABLE_NAME }}
+      to dynamically generate links based on deployment environment variables.
+      Example: http://{{ .Env.HELLO_DISTR_HOST }}
+    required: false
   update-deployments:
     description: |
       If set to true, all deployments of the application will be updated to the newly created version.
