@@ -23,6 +23,7 @@ export async function run(): Promise<void> {
     const composePath = core.getInput('compose-file');
     const templatePath = core.getInput('template-file');
     const templateFile = templatePath ? await fs.readFile(templatePath, 'utf8') : undefined;
+    const linkTemplate = core.getInput('link-template') || undefined;
 
     let versionId: string;
     if (composePath !== '') {
@@ -30,6 +31,7 @@ export async function run(): Promise<void> {
       const version = await distr.createDockerApplicationVersion(appId, versionName, {
         composeFile,
         templateFile,
+        linkTemplate,
       });
       if (!version.id) {
         throw new Error('Created version does not have an ID');
@@ -50,6 +52,7 @@ export async function run(): Promise<void> {
         chartUrl,
         baseValuesFile,
         templateFile,
+        linkTemplate,
       });
       if (!version.id) {
         throw new Error('Created version does not have an ID');
