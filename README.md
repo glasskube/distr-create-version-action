@@ -60,6 +60,11 @@ See [action.yml](action.yml).
     # Example usage: ${{ github.workspace }}/template
     # Optional
     template-file: ''
+
+    # If set to true, all deployments of the application will be updated to the newly created version.
+    # This will update all deployment targets where this application is deployed.
+    # Optional, defaults to false
+    update-deployments: false
 ```
 
 **Docker Example**
@@ -78,6 +83,7 @@ See [action.yml](action.yml).
     version-name: 'v1.0.0'
     compose-file: ${{ github.workspace }}/docker-compose-prod.yml
     template-file: ${{ github.workspace }}/template.env
+    update-deployments: true
 
 - name: Print Application Version ID
   id: output
@@ -103,6 +109,7 @@ See [action.yml](action.yml).
     chart-version: 'v1.0.0'
     base-values-file: ${{ github.workspace }}/base-values.yml
     template-file: ${{ github.workspace }}/template.yml
+    update-deployments: true
 
 - name: Print Application Version ID
   id: output

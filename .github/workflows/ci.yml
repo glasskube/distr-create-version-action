@@ -27,6 +27,7 @@ jobs:
           # chart-version: 'v7.0.0'
           # base-values-file: ${{ github.workspace }}/.prettierrc.yml
           template-file: ${{ github.workspace }}/.env.example
+          update-deployments: true
 
       - name: Print Application Version ID
         id: output

@@ -13,6 +13,7 @@ export async function run(): Promise<void> {
     const apiBase = core.getInput('api-base') || undefined;
     const appId = requiredInput('application-id');
     const versionName = requiredInput('version-name');
+    const updateDeployments = core.getBooleanInput('update-deployments');
 
     const distr = new DistrService({
       apiBase: apiBase,
@@ -23,12 +24,17 @@ export async function run(): Promise<void> {
     const templatePath = core.getInput('template-file');
     const templateFile = templatePath ? await fs.readFile(templatePath, 'utf8') : undefined;
 
+    let versionId: string;
     if (composePath !== '') {
       const composeFile = await fs.readFile(composePath, 'utf8');
       const version = await distr.createDockerApplicationVersion(appId, versionName, {
         composeFile,
         templateFile,
       });
+      if (!version.id) {
+        throw new Error('Created version does not have an ID');
+      }
+      versionId = version.id;
       core.setOutput('created-version-id', version.id);
     } else {
       const chartVersion = requiredInput('chart-version');
@@ -45,7 +51,23 @@ export async function run(): Promise<void> {
         baseValuesFile,
         templateFile,
       });
+      if (!version.id) {
+        throw new Error('Created version does not have an ID');
+      }
+      versionId = version.id;
       core.setOutput('created-version-id', version.id);
+    }
+
+    if (updateDeployments) {
+      core.info('Updating all deployments to the new version...');
+      const result = await distr.updateAllDeployments(appId, versionId);
+      core.info(`Updated ${result.updatedTargets.length} deployment target(s)`);
+      if (result.skippedTargets.length > 0) {
+        core.info(`Skipped ${result.skippedTargets.length} deployment target(s):`);
+        result.skippedTargets.forEach((target) => {
+          core.info(`  - ${target.deploymentTargetName}: ${target.reason}`);
+        });
+      }
     }
   } catch (error) {
     // Fail the workflow run if an error occurs

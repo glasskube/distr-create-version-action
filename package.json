@@ -25,14 +25,14 @@
   "scripts": {
     "bundle": "npm run lint:fix && npm run package",
     "lint": "prettier --check .",
-    "lint:fix": "prettier --write .",
+    "format": "prettier --write .",
     "local-action": "npx local-action . src/main.ts .env",
     "package": "npx rollup --config rollup.config.ts --configPlugin @rollup/plugin-typescript",
-    "all": "npm run lint:fix && npm run lint && npm run package"
+    "all": "npm run format && npm run lint && npm run package"
   },
   "dependencies": {
     "@actions/core": "^1.11.1",
-    "@glasskube/distr-sdk": "^1.1.0"
+    "@glasskube/distr-sdk": "^2.4.0"
   },
   "devDependencies": {
     "@github/local-action": "^2.5.1",

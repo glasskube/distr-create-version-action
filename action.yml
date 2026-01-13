@@ -48,6 +48,12 @@ inputs:
   template-file:
     description: Absolute path to template file for both helm and docker applications.
     required: false
+  update-deployments:
+    description: |
+      If set to true, all deployments of the application will be updated to the newly created version.
+      This will update all deployment targets where this application is deployed.
+    required: false
+    default: 'false'
 
 outputs:
   created-version-id:
