@@ -1,4 +1,12 @@
-name: Continuous Integration
+name: Integration Test
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
 
 permissions:
   contents: read
@@ -13,6 +21,27 @@ jobs:
         id: checkout
         uses: actions/checkout@v6
 
+      - name: Install pnpm
+        uses: pnpm/action-setup@41ff72655975bd51cab0327fa583b6e92b6d3061 # v4.2.0
+        with:
+          version: 10
+
+      - name: Setup Node.js
+        id: setup-node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24.12
+          cache: pnpm
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Install Dependencies
+        id: install
+        run: pnpm i
+
+      - name: Build dist/ Directory
+        id: build
+        run: pnpm run bundle
+
       - name: Create Distr Version
         id: distr-create-version
         uses: ./
@@ -20,13 +49,14 @@ jobs:
           api-base: ${{ vars.DISTR_API_BASE }}
           api-token: ${{ secrets.DISTR_TOKEN }}
           application-id: ${{ vars.DISTR_APPLICATION_ID }}
-          version-name: 'v8.0.0' # ${{ github.ref_name }}
+          version-name: ${{ github.sha }}-${{ github.run_id }}
           compose-file: ${{ github.workspace }}/action.yml
           # chart-type: 'oci'
           # chart-url: oci://ghcr.io/stefanprodan/charts/podinfo
           # chart-version: 'v7.0.0'
           # base-values-file: ${{ github.workspace }}/.prettierrc.yml
           template-file: ${{ github.workspace }}/.env.example
+          update-deployments: false
 
       - name: Print Application Version ID
         id: output
