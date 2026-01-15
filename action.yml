@@ -1,6 +1,6 @@
 name: Distr Create Version
 description: This action creates a new version of an application in Distr
-author: distr-sh
+author: Distr
 
 branding:
   icon: upload-cloud
