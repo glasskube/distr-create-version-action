@@ -13,7 +13,7 @@ importers:
         version: 2.0.2
       '@glasskube/distr-sdk':
         specifier: ^2.4.0
-        version: 2.4.0
+        version: 2.5.1
     devDependencies:
       '@github/local-action':
         specifier: ^6.0.2
@@ -335,8 +335,8 @@ packages:
     engines: {node: ^20 || ^22 || ^24}
     hasBin: true
 
-  '@glasskube/distr-sdk@2.4.0':
-    resolution: {integrity: sha512-e4jSpWWesDW8E9OVwqOtJSXVwSsiQKbSKqIAG3/6hrpRfe0d6SJKkeFF11Y2dDozTzto+27QwKKiJ547w2aeRQ==}
+  '@glasskube/distr-sdk@2.5.1':
+    resolution: {integrity: sha512-HbhkyVwqVG9bEV1B9C9BmTjX0L8yx7EB0/ODaPzC4GuUr4cbAF8jJcC32Nw73kT8JNvLXNdZdsrP3NvtdSNT9A==}
 
   '@isaacs/cliui@8.0.2':
     resolution: {integrity: sha512-O8jcjabXaleOG9DQ0+ARXWZBTfnP4WNAqzuiJK7ll44AmxGKv/J2M4TPjxjY3znBCfvBXFzucm1twdyFybFqEA==}
@@ -1795,7 +1795,7 @@ snapshots:
       - react-native-b4a
       - supports-color
 
-  '@glasskube/distr-sdk@2.4.0':
+  '@glasskube/distr-sdk@2.5.1':
     dependencies:
       semver: 7.7.3
 
