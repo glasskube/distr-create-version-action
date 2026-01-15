@@ -1,7 +1,7 @@
 # distr-create-version-action
 
 This action creates a new version of a
-[Distr](https://github.com/glasskube/distr) application.
+[Distr](https://github.com/distr-sh/distr) application.
 
 Hook it into your CI/CD pipeline to automatically create a new version of your
 application in Distr, every time you push a new release. It supports both Docker
@@ -12,7 +12,7 @@ and Helm applications.
 See [action.yml](action.yml).
 
 ```yaml
-- uses: glasskube/distr-create-version-action@v1
+- uses: distr-sh/distr-create-version-action@v1
   with:
     # Path to the Distr API, must end with /api/v1
     # Defaults to https://app.distr.sh/api/v1 – if you are selfhosting set to, e.g. https://distr.example.com/api/v1
@@ -82,7 +82,7 @@ See [action.yml](action.yml).
 
 - name: Create Distr Version
   id: distr-create-version
-  uses: glasskube/distr-create-version-action@v1
+  uses: distr-sh/distr-create-version-action@v1
   with:
     api-token: ${{ secrets.DISTR_API_TOKEN }}
     application-id: '7fa566b3-a20e-4b09-814c-5193c1469f7c'
@@ -106,7 +106,7 @@ See [action.yml](action.yml).
 
 - name: Create Distr Version
   id: distr-create-version
-  uses: glasskube/distr-create-version-action@v1
+  uses: distr-sh/distr-create-version-action@v1
   with:
     api-token: ${{ secrets.DISTR_API_TOKEN }}
     application-id: '7fa566b3-a20e-4b09-814c-5193c1469f7c'
@@ -191,7 +191,7 @@ steps:
 ```
 
 For example workflow runs, check out the
-[Actions tab](https://github.com/glasskube/distr-create-version-action/actions)!
+[Actions tab](https://github.com/distr-sh/distr-create-version-action/actions)!
 
 ## Publishing a New Release
 

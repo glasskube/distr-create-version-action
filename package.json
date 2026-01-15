@@ -1,17 +1,17 @@
 {
   "name": "create-distr-version-action",
   "description": "This action creates a new version of a Distr application",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "license": "Apache-2.0",
   "type": "module",
   "private": true,
   "homepage": "https://distr.sh",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/glasskube/create-distr-version-action.git"
+    "url": "git+https://github.com/distr-sh/create-distr-version-action.git"
   },
   "bugs": {
-    "url": "https://github.com/glasskube/create-distr-version-action/issues"
+    "url": "https://github.com/distr-sh/create-distr-version-action/issues"
   },
   "keywords": [
     "actions"
@@ -32,7 +32,7 @@
   },
   "dependencies": {
     "@actions/core": "^2.0.2",
-    "@glasskube/distr-sdk": "^2.4.0"
+    "@distr-sh/distr-sdk": "^2.4.0"
   },
   "devDependencies": {
     "@github/local-action": "^6.0.2",

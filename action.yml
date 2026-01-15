@@ -1,6 +1,6 @@
 name: Distr Create Version
 description: This action creates a new version of an application in Distr
-author: Glasskube
+author: distr-sh
 
 branding:
   icon: upload-cloud
