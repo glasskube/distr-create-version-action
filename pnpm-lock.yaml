@@ -11,8 +11,8 @@ importers:
         specifier: ^2.0.2
         version: 2.0.2
       '@distr-sh/distr-sdk':
-        specifier: ^2.4.0
-        version: 2.4.0
+        specifier: ^2.5.2
+        version: 2.5.2
     devDependencies:
       '@github/local-action':
         specifier: ^6.0.2
@@ -27,10 +27,10 @@ importers:
         specifier: ^12.3.0
         version: 12.3.0(rollup@4.55.1)(tslib@2.8.1)(typescript@5.9.3)
       '@types/node':
-        specifier: ^24.10.7
+        specifier: ^24.10.8
         version: 24.10.8
       prettier:
-        specifier: ^3.7.4
+        specifier: ^3.8.0
         version: 3.8.0
       rollup:
         specifier: ^4.55.1
@@ -185,6 +185,10 @@ packages:
     resolution:
       {integrity: sha512-IchNf6dN4tHoMFIn/7OE8LWZ19Y6q/67Bmf6vnGREv8RSbBVb9LPJxEcnwrcwX6ixSvaiGoomAUvu4YSxXrVgw==}
     engines: {node: '>=12'}
+
+  '@distr-sh/distr-sdk@2.5.2':
+    resolution:
+      {integrity: sha512-NatIMlWd3jdU94r/KAcsbPWD3YtEq1x0yLo69CBIesrL+SzdkKhrhgWia3tNJbtoXqzTulK9+I8cIK6cdalyJQ==}
 
   '@esbuild/aix-ppc64@0.27.2':
     resolution:
@@ -393,10 +397,6 @@ packages:
       {integrity: sha512-WZKIpuOKnTx5HUt3y1Ny9C/YuSLfHDKx2H0jbqlN+8ssYMpMOjsiskDbHIufZBngCc2x1/xPjlpKshhGc8BCoA==}
     engines: {node: ^20 || ^22 || ^24}
     hasBin: true
-
-  '@distr-sh/distr-sdk@2.4.0':
-    resolution:
-      {integrity: sha512-e4jSpWWesDW8E9OVwqOtJSXVwSsiQKbSKqIAG3/6hrpRfe0d6SJKkeFF11Y2dDozTzto+27QwKKiJ547w2aeRQ==}
 
   '@isaacs/cliui@8.0.2':
     resolution:
@@ -1999,6 +1999,10 @@ snapshots:
     dependencies:
       '@jridgewell/trace-mapping': 0.3.9
 
+  '@distr-sh/distr-sdk@2.5.2':
+    dependencies:
+      semver: 7.7.3
+
   '@esbuild/aix-ppc64@0.27.2':
     optional: true
 
@@ -2122,10 +2126,6 @@ snapshots:
       - eslint
       - react-native-b4a
       - supports-color
-
-  '@distr-sh/distr-sdk@2.4.0':
-    dependencies:
-      semver: 7.7.3
 
   '@isaacs/cliui@8.0.2':
     dependencies:
