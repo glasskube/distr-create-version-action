@@ -17,7 +17,7 @@
     },
     {
       "matchDatasources": ["npm"],
-      "matchPackageNames": ["@glasskube/distr-sdk"],
+      "matchPackageNames": ["@distr-sh/distr-sdk"],
       "matchUpdateTypes": ["minor", "patch"],
       "automerge": true
     }

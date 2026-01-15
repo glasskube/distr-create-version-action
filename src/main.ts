@@ -1,5 +1,5 @@
 import * as core from '@actions/core';
-import {DistrService, HelmChartType} from '@glasskube/distr-sdk';
+import {DistrService, HelmChartType} from '@distr-sh/distr-sdk';
 import * as fs from 'node:fs/promises';
 
 /**
